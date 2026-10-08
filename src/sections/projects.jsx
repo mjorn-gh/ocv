@@ -26,21 +26,21 @@ export default function Projects() {
                                         done in a team of 2 people."
 						tags={['Thesis', 'C#', '.NET6', 'Blazor', 'gurobi']}
 						picture={bachelorImg}
-						code="https://github.com/cyberniinja/bachelors-thesis"
+						code="https://github.com/mjorn-gh/bachelors-thesis"
 					/>
 					<Project
 						id="ivis"
 						name="Covid-19 internet"
-						short="Resarch and development of a website that illustrates the internet
-                                        usage of swiss people during the Covid-19 pandemic. The data waas 
+						short="Research and development of a website that illustrates the internet
+                                        usage of swiss people during the Covid-19 pandemic. The data was 
                                         collected in a national survey and was made available by the swiss
                                         federal office for statistics. The website was developed as part of a
                                         school project during my sixth semester at FHNW and was done in a team
                                         of 2 people."
 						tags={['D3.js', 'HTML/CSS/JS']}
 						picture={ivisImg}
-						code="https://github.com/cyberniinja/internet-usage"
-						site="https://cyberniinja.github.io/internet-usage/"
+						code="https://github.com/mjorn-gh/internet-usage"
+						site="https://mjorn-gh.github.io/internet-usage/"
 					/>
 					<Project
 						id="geiger"
@@ -51,8 +51,8 @@ export default function Projects() {
                                         team of 2 people."
 						tags={['Thesis', 'React', 'HTML/CSS/JS']}
 						picture={geigerImg}
-						code="https://github.com/cyberniinja/geiger-nudging"
-						site="https://cyberniinja.github.io/geiger-nudging/"
+						code="https://github.com/mjorn-gh/geiger-nudging"
+						site="https://mjorn-gh.github.io/geiger-nudging/"
 					/>
 					<Project
 						id="leadtool"

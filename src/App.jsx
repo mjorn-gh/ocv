@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './sections/home';
 import About from './sections/about';
 import Projects from './sections/projects';
-import Carreer from './sections/career';
+import Career from './sections/career';
 import Navbar from './components/navbar';
 import './App.sass';
 import { Link } from './components/button';
@@ -55,11 +55,11 @@ function App() {
 			<main>
 				<Home />
 				<Projects />
-				<Carreer />
+				<Career />
 				<About />
 			</main>
 			<footer className="primary">
-				© Elias Mjøen 2023
+				© Elias Mjøen {new Date().getFullYear()}
 				<Link
 					link="https://www.privacypolicygenerator.info/live.php?token=3pLM1x8zUQ0INTedkGP65MOC4uFK3QCO"
 					className="btn__inline"

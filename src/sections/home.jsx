@@ -11,10 +11,11 @@ function Home() {
 					<h2>Fullstack Developer | UI/UX Designer</h2>
 					<h4>Hi! Nice to meet you :)</h4>
 					<h5>
-						I'm an IT guy based in switzerland that spezializes in designing and
-						developing beautiful and user-friendly web-solutions. I finished my 
-						bachelors degree in 2023 and I'm currently designing and creating 
-						applications for Bertschi Digital Logistics AG
+						I'm an IT guy based in Switzerland who specializes in designing and
+						developing beautiful and user-friendly web solutions. I finished my
+						bachelor's degree in 2023 and I'm currently the UI/UX designer and a
+						developer at Bertschi Digital Logistics AG, where I also lead the UI
+						Expert Group.
 					</h5>
 					<div className="links">
 						<Link
@@ -28,8 +29,8 @@ function Home() {
 							icon="fa-brands fa-linkedin-in"
 						/>
 						<Link
-							link="https://github.com/cyberniinja"
-							text="cyberniinja"
+							link="https://github.com/mjorn-gh"
+							text="mjorn-gh"
 							icon="fa-brands fa-github"
 						/>
 					</div>
