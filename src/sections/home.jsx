@@ -29,8 +29,8 @@ function Home() {
 							icon="fa-brands fa-linkedin-in"
 						/>
 						<Link
-							link="https://github.com/cyberniinja"
-							text="cyberniinja"
+							link="https://github.com/mjorn-gh"
+							text="mjorn-gh"
 							icon="fa-brands fa-github"
 						/>
 					</div>

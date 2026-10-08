@@ -26,7 +26,7 @@ export default function Projects() {
                                         done in a team of 2 people."
 						tags={['Thesis', 'C#', '.NET6', 'Blazor', 'gurobi']}
 						picture={bachelorImg}
-						code="https://github.com/cyberniinja/bachelors-thesis"
+						code="https://github.com/mjorn-gh/bachelors-thesis"
 					/>
 					<Project
 						id="ivis"
@@ -39,8 +39,8 @@ export default function Projects() {
                                         of 2 people."
 						tags={['D3.js', 'HTML/CSS/JS']}
 						picture={ivisImg}
-						code="https://github.com/cyberniinja/internet-usage"
-						site="https://cyberniinja.github.io/internet-usage/"
+						code="https://github.com/mjorn-gh/internet-usage"
+						site="https://mjorn-gh.github.io/internet-usage/"
 					/>
 					<Project
 						id="geiger"
@@ -51,8 +51,8 @@ export default function Projects() {
                                         team of 2 people."
 						tags={['Thesis', 'React', 'HTML/CSS/JS']}
 						picture={geigerImg}
-						code="https://github.com/cyberniinja/geiger-nudging"
-						site="https://cyberniinja.github.io/geiger-nudging/"
+						code="https://github.com/mjorn-gh/geiger-nudging"
+						site="https://mjorn-gh.github.io/geiger-nudging/"
 					/>
 					<Project
 						id="leadtool"
