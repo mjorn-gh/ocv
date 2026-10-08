@@ -1,11 +1,11 @@
 import React from 'react';
 import Project from '../components/project';
 import './projects.sass';
+import bachelorImg from '../images/bachelor.jpg';
+import ivisImg from '../images/Ivis.jpg';
+import geigerImg from '../images/GEIGER.jpg';
+import leadImg from '../images/Leadtool.jpg';
 export default function Projects() {
-	const bachelorImg = require('../images/bachelor.jpg');
-	const ivisImg = require('../images/Ivis.jpg');
-	const geigerImg = require('../images/GEIGER.jpg');
-	const leadImg = require('../images/Leadtool.jpg');
 	return (
 		<section className="projects primary">
 			<div className="container">
