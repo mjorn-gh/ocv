@@ -1,0 +1,304 @@
+---
+import '@fontsource-variable/hanken-grotesk';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import { getCareer, getProjects } from '../lib/content';
+import Logo from '../components/Logo.astro';
+import { profile } from '../data/profile';
+
+const career = await getCareer();
+const projects = await getProjects();
+const strip = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+const built = new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<title>CV · {profile.name}</title>
+	</head>
+	<body>
+		<main class="sheet">
+			<div class="mark"><Logo explode={1} /></div>
+
+			<header class="head">
+				<span class="eyebrow">Curriculum Vitae · {profile.role}</span>
+				<h1>{profile.name}</h1>
+				<div class="contact">
+					<a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
+					<a href={profile.links.site}>{strip(profile.links.site)}</a>
+					<a href={profile.links.linkedin}>{strip(profile.links.linkedin)}</a>
+					<a href={profile.links.github}>{strip(profile.links.github)}</a>
+					<span>{profile.location}</span>
+				</div>
+			</header>
+
+			<section class="row">
+				<h2>Profile</h2>
+				<p class="lead">{profile.about}</p>
+			</section>
+
+			<section class="block">
+				<h2>Career &amp; education</h2>
+				{
+					career.map(({ data }) => (
+						<div class="row">
+							<span class="date">
+								{data.from} — {data.to ?? 'today'}
+							</span>
+							<div class="entry">
+								<h3>{data.title}</h3>
+								<p class="org">{data.org}</p>
+								<p class="muted">{data.highlights?.join(' · ') ?? data.summary}</p>
+							</div>
+						</div>
+					))
+				}
+			</section>
+
+			<section class="block">
+				<h2>Selected projects</h2>
+				<div class="grid">
+					{
+						projects.map(({ data }, i) => (
+							<div class="card">
+								<span class="mono">
+									P.{String(i + 1).padStart(2, '0')} · {data.label}
+								</span>
+								<h3>{data.title}</h3>
+								<span class="muted">{data.tags.join(', ')}</span>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="row block">
+				<h2>Skills &amp; languages</h2>
+				<div class="grid">
+					<div class="card todo">[Skills — to be defined]</div>
+					<div class="card todo">[Languages — to be defined]</div>
+				</div>
+			</section>
+
+			<footer class="foot">
+				<span>Generated from {strip(profile.links.site)}</span>
+				<span>{built}</span>
+			</footer>
+		</main>
+	</body>
+</html>
+
+<style>
+	@page {
+		size: A4;
+		margin: 0;
+	}
+
+	:root {
+		--paper: #fbf8f3;
+		--ink: #232838;
+		--strong: #1b2030;
+		--muted: #3a4155;
+		--label: #4d556b;
+		--rule: #c9bfb2;
+		--card: #f4ede3;
+		--card-border: #d9cfc2;
+		--mono: 'IBM Plex Mono', monospace;
+	}
+
+	html,
+	body {
+		margin: 0;
+		background: var(--paper);
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	@media screen {
+		body {
+			background: #e4dccf;
+			padding: 32px 0;
+		}
+		.sheet {
+			margin: 0 auto;
+			box-shadow: 0 20px 60px rgb(35 40 56 / 0.18);
+		}
+	}
+
+	.sheet {
+		position: relative;
+		width: 210mm;
+		height: 297mm;
+		overflow: hidden;
+		box-sizing: border-box;
+		padding: 52px 60px 40px;
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		background: var(--paper);
+		color: var(--ink);
+		font: 13px/1.5 'Hanken Grotesk Variable', sans-serif;
+	}
+
+	.mark {
+		position: absolute;
+		top: -56px;
+		right: -64px;
+		width: 250px;
+		color: #efe6da;
+	}
+
+	/* Keep the content painted above the decorative mark. */
+	.sheet > :not(.mark) {
+		position: relative;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	h1,
+	h2,
+	h3,
+	p {
+		margin: 0;
+	}
+
+	.head {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding-bottom: 16px;
+		border-bottom: 2px solid var(--ink);
+	}
+
+	.eyebrow,
+	h2 {
+		font-family: var(--mono);
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--label);
+	}
+
+	h1 {
+		font-size: 54px;
+		line-height: 0.9;
+		font-weight: 800;
+		letter-spacing: -0.045em;
+		color: var(--strong);
+	}
+
+	.contact {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 22px;
+		font-family: var(--mono);
+		font-size: 12px;
+	}
+
+	.block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding-top: 16px;
+		border-top: 1px solid var(--rule);
+	}
+
+	.row {
+		display: flex;
+		gap: 24px;
+	}
+
+	.row > h2,
+	.date {
+		flex: 0 0 150px;
+		padding-top: 2px;
+	}
+
+	.row.block {
+		flex-direction: row;
+	}
+
+	.date,
+	.mono {
+		font-family: var(--mono);
+		font-size: 12px;
+	}
+
+	.lead {
+		flex: 1;
+		font-size: 14px;
+		line-height: 1.55;
+	}
+
+	.entry {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+
+	h3 {
+		font-size: 15px;
+		font-weight: 700;
+		color: var(--strong);
+	}
+
+	.org {
+		font-weight: 500;
+	}
+
+	.muted {
+		color: var(--muted);
+	}
+
+	.grid {
+		flex: 1;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding: 12px 14px;
+		border: 1px solid var(--card-border);
+		border-radius: 10px;
+		background: var(--card);
+	}
+
+	.card h3 {
+		font-size: 14px;
+	}
+
+	.card .mono {
+		color: var(--label);
+	}
+
+	.todo {
+		background: none;
+		border-style: dashed;
+		color: var(--label);
+	}
+
+	.foot {
+		margin-top: auto;
+		display: flex;
+		justify-content: space-between;
+		padding-top: 12px;
+		border-top: 2px solid var(--ink);
+		font-family: var(--mono);
+		font-size: 12px;
+		color: var(--label);
+	}
+</style>

@@ -1,0 +1,56 @@
+---
+// Placeholder structure; the V1 design gets ported onto this next.
+import { getCareer, getProjects } from '../lib/content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import { profile } from '../data/profile';
+
+const career = await getCareer();
+const projects = await getProjects();
+---
+
+<Base title={profile.name}>
+	<header>
+		<Logo class="logo" />
+		<a href="/cv.pdf" download="CV_Elias_Mjoen.pdf">CV.pdf ↓</a>
+	</header>
+	<main>
+		<section id="profile">
+			<h1>{profile.name}</h1>
+			<p>{profile.role}</p>
+			<p>{profile.about}</p>
+		</section>
+		<section id="career">
+			<h2>Career</h2>
+			{
+				career.map(({ data }) => (
+					<article>
+						<span>{data.from} — {data.to ?? 'today'}</span>
+						<h3>{data.title}</h3>
+						<p>{data.org}</p>
+						<p>{data.summary}</p>
+					</article>
+				))
+			}
+		</section>
+		<section id="projects">
+			<h2>Projects</h2>
+			{
+				projects.map(({ data }) => (
+					<article>
+						<Image src={data.image} alt="" width={480} />
+						<h3>{data.title}</h3>
+						<p>{data.tags.join(' · ')}</p>
+					</article>
+				))
+			}
+		</section>
+	</main>
+</Base>
+
+<style>
+	.logo {
+		width: 24px;
+	}
+</style>
