@@ -1,0 +1,135 @@
+---
+import HeroMark from './HeroMark.astro';
+import { profile } from '../data/profile';
+---
+
+<section id="profile" class="hero">
+	<HeroMark />
+	<div class="title">
+		<span class="eyebrow">{profile.role}</span>
+		<h1>{profile.name.split(' ')[0]} <br class="break" />{profile.name.split(' ').slice(1).join(' ')}</h1>
+	</div>
+	<div class="glass strip">
+		<div class="cell">
+			<span class="eyebrow label">Based in</span>
+			<span class="place">{profile.location}</span>
+		</div>
+		<div class="cell about">
+			<span class="eyebrow label">About</span>
+			<p>{profile.about}</p>
+		</div>
+		<div class="cell contact">
+			<span class="eyebrow label">Contact</span>
+			<a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
+			<a href={profile.links.linkedin}>LinkedIn ↗</a>
+			<a href={profile.links.github}>GitHub ↗</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 48px;
+		min-height: 640px;
+		padding-top: 72px;
+	}
+
+	.title {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		max-width: 620px;
+	}
+
+	h1 {
+		font-size: clamp(64px, 14vw, 136px);
+		line-height: 0.86;
+		font-weight: 800;
+		letter-spacing: -0.05em;
+		color: var(--strong);
+	}
+
+	/* One line once there is room beside the hero logo. */
+	@media (min-width: 1200px) {
+		.title {
+			max-width: none;
+		}
+		.break {
+			display: none;
+		}
+	}
+
+	.strip {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+	}
+
+	.cell {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 28px 32px;
+	}
+
+	.cell + .cell {
+		border-left: 1px solid var(--faint);
+	}
+
+	.label {
+		font-size: 11px;
+		letter-spacing: 0.08em;
+	}
+
+	.place {
+		font-size: 20px;
+		font-weight: 500;
+	}
+
+	.contact {
+		gap: 0;
+		padding-block: 22px;
+	}
+
+	.contact .label {
+		padding: 6px 0;
+	}
+
+	.contact a {
+		display: flex;
+		align-items: center;
+		min-height: 36px;
+		font-weight: 500;
+	}
+
+	.contact a:hover {
+		color: var(--strong);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+
+	@media (max-width: 900px) {
+		.strip {
+			grid-template-columns: minmax(0, 1fr);
+		}
+		.cell + .cell {
+			border-left: 0;
+			border-top: 1px solid var(--faint);
+		}
+	}
+
+	@media (max-width: 720px) {
+		.hero {
+			min-height: 0;
+			padding-top: 120px;
+			gap: 32px;
+		}
+		.cell {
+			padding: 22px 24px;
+		}
+	}
+</style>

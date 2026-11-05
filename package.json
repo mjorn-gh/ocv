@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && bun run cv:pdf",
-    "cv:pdf": "bun scripts/cv-pdf.ts",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "bun run build && gh-pages -d dist"

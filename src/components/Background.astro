@@ -1,0 +1,118 @@
+---
+// Decorative layer behind the page: light spots, blurred far pieces and
+// shaded near pieces. It is static; only the hero logo moves.
+import { farPieces, glows, nearPieces, pieces, type Piece } from './shapes';
+
+// Positions and sizes are authored on a 1280px-wide stage. Horizontally they
+// scale with the viewport (cqw) so wide screens get decoration up to the
+// edges; sizes grow by at most 25% so pieces don't balloon.
+const STAGE = 1280;
+const x = (px: number) => `${(px / STAGE) * 100}cqw`;
+const size = (px: number) => `clamp(${px}px, ${(px / STAGE) * 100}cqw, ${px * 1.25}px)`;
+
+const style = (p: Piece) =>
+	[
+		`left:${x(p.x)}`,
+		`top:${p.y}px`,
+		`width:${size(p.scale * 24)}`,
+		`--rotate:${p.rotate ?? 0}deg`,
+	].join(';');
+---
+
+<div class="background" aria-hidden="true">
+	<div class="stage">
+		{
+			glows.map((g) => (
+				<div
+					class="glow"
+					style={`left:${x(g.x - g.r)};top:${g.y - g.r}px;width:${size(g.r * 2)};opacity:${g.opacity}`}
+				/>
+			))
+		}
+		{
+			farPieces.map((p) => (
+				<svg class="piece far" viewBox="0 0 24 24" style={style(p)}>
+					{p.shape === 'circle' ? <circle cx="12" cy="12" r="12" /> : <path d={pieces[p.shape]} />}
+				</svg>
+			))
+		}
+		{
+			nearPieces.map((p, i) => (
+				<svg class="piece near" viewBox="0 0 24 24" style={style(p)}>
+					<defs>
+						<linearGradient id={`near-${i}`} x1="0" y1="0" x2="1" y2="1">
+							<stop offset="0" style="stop-color: var(--s1)" />
+							<stop offset="0.55" style="stop-color: var(--s2)" />
+							<stop offset="1" style="stop-color: var(--s3)" />
+						</linearGradient>
+					</defs>
+					{p.shape === 'circle' ? (
+						<circle cx="12" cy="12" r="12" fill={`url(#near-${i})`} />
+					) : (
+						<path d={pieces[p.shape]} fill={`url(#near-${i})`} />
+					)}
+				</svg>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.background {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	/* Never narrower than the authored 1280px stage; on smaller screens it is
+	   centred and cropped. */
+	.stage {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		width: max(100%, 1280px);
+		translate: -50% 0;
+		container-type: inline-size;
+	}
+
+	.glow,
+	.piece {
+		position: absolute;
+	}
+
+	.glow {
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: radial-gradient(closest-side, var(--glow), transparent);
+	}
+
+	.piece {
+		height: auto;
+		overflow: visible;
+		transform-origin: 0 0;
+		rotate: var(--rotate);
+	}
+
+	.far {
+		fill: var(--s2);
+		opacity: var(--far-opacity);
+		filter: blur(4px);
+	}
+
+	.near {
+		filter: drop-shadow(0 14px 22px var(--drop));
+	}
+
+	/* On narrow screens the stage is cropped to its centre; thin out the
+	   pieces so they don't crowd the content. */
+	@media (max-width: 720px) {
+		.far {
+			display: none;
+		}
+		.near {
+			opacity: 0.6;
+		}
+	}
+</style>

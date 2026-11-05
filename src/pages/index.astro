@@ -1,56 +1,61 @@
 ---
-// Placeholder structure; the V1 design gets ported onto this next.
-import { getCareer, getProjects } from '../lib/content';
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Logo from '../components/Logo.astro';
+import Background from '../components/Background.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Career from '../components/Career.astro';
+import Projects from '../components/Projects.astro';
 import { profile } from '../data/profile';
-
-const career = await getCareer();
-const projects = await getProjects();
 ---
 
 <Base title={profile.name}>
-	<header>
-		<Logo class="logo" />
-		<a href="/cv.pdf" download="CV_Elias_Mjoen.pdf">CV.pdf ↓</a>
-	</header>
-	<main>
-		<section id="profile">
-			<h1>{profile.name}</h1>
-			<p>{profile.role}</p>
-			<p>{profile.about}</p>
-		</section>
-		<section id="career">
-			<h2>Career</h2>
-			{
-				career.map(({ data }) => (
-					<article>
-						<span>{data.from} — {data.to ?? 'today'}</span>
-						<h3>{data.title}</h3>
-						<p>{data.org}</p>
-						<p>{data.summary}</p>
-					</article>
-				))
-			}
-		</section>
-		<section id="projects">
-			<h2>Projects</h2>
-			{
-				projects.map(({ data }) => (
-					<article>
-						<Image src={data.image} alt="" width={480} />
-						<h3>{data.title}</h3>
-						<p>{data.tags.join(' · ')}</p>
-					</article>
-				))
-			}
-		</section>
-	</main>
+	<div class="page" id="top">
+		<Background />
+		<div class="wrap">
+			<Header />
+			<main>
+				<Hero />
+				<Career />
+				<Projects />
+			</main>
+			<footer class="footer mono">
+				<span>© {new Date().getFullYear()} {profile.name}</span>
+				<span>elias.mjoen.ch</span>
+			</footer>
+		</div>
+	</div>
 </Base>
 
 <style>
-	.logo {
-		width: 24px;
+	.page {
+		position: relative;
+		min-height: 100vh;
+		overflow: hidden;
+	}
+
+	.wrap {
+		position: relative;
+		max-width: 1480px;
+		margin: 0 auto;
+		padding: 0 clamp(24px, 4vw, 64px) 64px;
+	}
+
+	.footer {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 16px;
+		margin-top: 120px;
+		padding-top: 18px;
+		border-top: 2px solid var(--text);
+	}
+
+	@media (max-width: 720px) {
+		.wrap {
+			padding: 0 16px 48px;
+		}
+		.footer {
+			margin-top: 80px;
+		}
 	}
 </style>

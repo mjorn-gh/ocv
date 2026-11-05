@@ -1,9 +1,9 @@
 export const profile = {
 	name: 'Elias Mjøen',
-	role: 'Fullstack Developer · UI/UX Designer',
+	role: 'Software Engineer · UI/UX Designer',
 	location: 'Switzerland',
 	about:
-		'I design and build user-friendly web solutions. UI/UX designer and developer at Bertschi Digital Logistics AG, where I also lead the UI Expert Group.',
+		'I design and build user-friendly web solutions. Software Engineer & UI/UX Designer at Bertschi Digital Logistics AG, where I also lead the UI Expert Group.',
 	links: {
 		email: 'elias@mjoen.ch',
 		site: 'https://elias.mjoen.ch',

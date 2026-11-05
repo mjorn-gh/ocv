@@ -30,7 +30,7 @@
 - id: lead-management
   order: 4
   title: Lead management
-  label: Team of 7
-  summary: Lead management application for Allianz Suisse, built as an introduction to agile development.
+  label: Project for Allianz Suisse
+  summary: Lead management application for Allianz Suisse, built as an introduction to agile development. Team of 7.
   tags: [React, Java, Spring Boot]
   image: ../assets/projects/leadtool.jpg

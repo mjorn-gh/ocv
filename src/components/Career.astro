@@ -1,0 +1,217 @@
+---
+import { getCareer } from '../lib/content';
+
+const career = await getCareer();
+const first = career.at(-1)?.data.from.split('/')[1];
+---
+
+<section id="career" class="section">
+	<div class="heading">
+		<h2>Career</h2>
+		<span class="mono">{first} — today</span>
+	</div>
+	<ol class="glass timeline">
+		{
+			career.map(({ data }, i) => (
+				<li class="entry">
+					<div class="rail">
+						<span class:list={['icon', { current: !data.to }]}>
+							{data.kind === 'work' ? (
+								<svg viewBox="0 0 24 24" aria-label="Work" role="img">
+									<rect x="3" y="7" width="18" height="13" rx="2" />
+									<path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+									<path d="M3 13h18" />
+								</svg>
+							) : (
+								<svg viewBox="0 0 24 24" aria-label="Education" role="img">
+									<path d="M2 9l10-5 10 5-10 5z" />
+									<path d="M6 11v5c2 2 10 2 12 0v-5" />
+								</svg>
+							)}
+						</span>
+						{i < career.length - 1 && <span class="line" />}
+					</div>
+					<div class="body">
+						<span class="date mono">
+							{data.from} — {data.to ?? 'today'}
+						</span>
+						<div class="text">
+							<h3>{data.title}</h3>
+							<p class="org">{data.org}</p>
+							<p class="summary">{data.summary}</p>
+							{data.highlights && (
+								<ul class="highlights">
+									{data.highlights.map((item) => (
+										<li>{item}</li>
+									))}
+								</ul>
+							)}
+						</div>
+					</div>
+				</li>
+			))
+		}
+	</ol>
+</section>
+
+<style>
+	.section {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 32px;
+		margin-top: 120px;
+		scroll-margin-top: 24px;
+	}
+
+	.heading {
+		flex: 0 0 220px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding-top: 8px;
+	}
+
+	h2 {
+		font-size: 44px;
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		color: var(--strong);
+	}
+
+	.timeline {
+		flex: 1 1 600px;
+		min-width: 0;
+		margin: 0;
+		padding: 36px 40px;
+		list-style: none;
+	}
+
+	.entry {
+		display: flex;
+		gap: 24px;
+	}
+
+	.rail {
+		flex: 0 0 44px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.icon {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		border: 1px solid var(--rule);
+		color: var(--text);
+	}
+
+	.icon.current {
+		border-color: var(--accent);
+		background: var(--accent);
+		color: var(--on-accent);
+	}
+
+	.icon svg {
+		width: 20px;
+		height: 20px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.6;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.line {
+		flex: 1;
+		width: 1px;
+		background: var(--rule);
+	}
+
+	.body {
+		flex: 1;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 28px;
+		padding: 8px 0 32px;
+	}
+
+	.entry:last-child .body {
+		padding-bottom: 4px;
+	}
+
+	.date {
+		flex: 0 0 150px;
+		font-size: 13px;
+		padding-top: 4px;
+	}
+
+	.text {
+		flex: 1 1 300px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	h3 {
+		font-size: 21px;
+		font-weight: 600;
+		line-height: 1.3;
+		color: var(--strong);
+	}
+
+	.org {
+		font-weight: 500;
+	}
+
+	.summary {
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--muted);
+	}
+
+	.highlights {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		margin: 4px 0 0;
+		padding: 0;
+		list-style: none;
+		font-size: 15px;
+		line-height: 1.55;
+	}
+
+	.highlights li {
+		position: relative;
+		padding-left: 20px;
+	}
+
+	/* A short rule as the marker, in keeping with the hairlines elsewhere. */
+	.highlights li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.78em;
+		width: 10px;
+		height: 1px;
+		background: var(--rule);
+	}
+
+	@media (max-width: 720px) {
+		.section {
+			margin-top: 80px;
+			gap: 20px;
+		}
+		.heading {
+			flex-basis: 100%;
+		}
+		.timeline {
+			padding: 24px 20px;
+		}
+		.entry {
+			gap: 16px;
+		}
+	}
+</style>

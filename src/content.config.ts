@@ -11,8 +11,17 @@ const career = defineCollection({
 		title: z.string(),
 		org: z.string(),
 		summary: z.string(),
-		// Shorter, denser lines for the printed CV; falls back to summary.
+		// Listed under the summary, on the site and in the CV.
 		highlights: z.array(z.string()).optional(),
+		// Collected across all entries into the CV's skills section.
+		skills: z.array(z.string()).default([]),
+		// "German, English (C1)" or a list; collected like skills.
+		languages: z
+			.union([z.string(), z.array(z.string())])
+			.default([])
+			.transform((value) =>
+				(typeof value === 'string' ? value.split(',') : value).map((item) => item.trim()).filter(Boolean),
+			),
 	}),
 });
 

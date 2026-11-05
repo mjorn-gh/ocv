@@ -1,0 +1,117 @@
+---
+import Logo from './Logo.astro';
+import { profile } from '../data/profile';
+---
+
+<header class="header">
+	<a href="#top" class="brand">
+		<Logo class="brand-logo" />
+		<span class="name">{profile.name}</span>
+		<span class="mono">OCV / {new Date().getFullYear()}</span>
+	</a>
+	<nav aria-label="Primary">
+		<a href="#career">Career</a>
+		<a href="#projects">Projects</a>
+		<a href={`mailto:${profile.links.email}`}>Contact</a>
+		<button type="button" class="theme" data-theme-toggle aria-label="Switch colour theme">
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+				<path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"></path>
+			</svg>
+		</button>
+		<a href="/cv.pdf" download="CV_Elias_Mjoen.pdf" class="cv">CV.pdf ↓</a>
+	</nav>
+</header>
+
+<script>
+	const root = document.documentElement;
+	const prefersLight = matchMedia('(prefers-color-scheme: light)');
+	const current = () => root.dataset.theme ?? (prefersLight.matches ? 'light' : 'dark');
+
+	document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+		const next = current() === 'light' ? 'dark' : 'light';
+		root.dataset.theme = next;
+		try {
+			localStorage.setItem('theme', next);
+		} catch {}
+	});
+</script>
+
+<style>
+	.header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 28px 0 18px;
+		border-bottom: 2px solid var(--text);
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.brand :global(.brand-logo) {
+		width: 24px;
+		height: 24px;
+	}
+
+	.name {
+		font-weight: 700;
+		font-size: 18px;
+	}
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 28px;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	nav a:not(.cv):hover {
+		color: var(--strong);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+
+	.theme {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		margin: -10px -8px;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.theme svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	.cv {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		margin: -10px 0;
+		padding: 0 18px;
+		border-radius: 12px;
+		background: var(--accent);
+		color: var(--on-accent);
+		font-weight: 600;
+	}
+
+	@media (max-width: 560px) {
+		.mono {
+			display: none;
+		}
+	}
+</style>
