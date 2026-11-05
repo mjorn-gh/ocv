@@ -1,7 +1,6 @@
 {
   "name": "ocv",
   "version": "2.2.0",
-  "homepage": "https://elias.mjoen.ch",
   "private": true,
   "type": "module",
   "scripts": {
