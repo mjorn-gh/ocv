@@ -42,7 +42,7 @@ All content lives in `src/data/`:
 
 Each career entry can list `highlights`, `skills` and `languages`. The CV collects the skills and languages from all entries and removes duplicates, so add a skill to the entry where you used it. A language level in brackets, such as `English (C1)`, is kept wherever any entry gives one.
 
-The CV is a single fixed A4 page. If its content gets too tall, the build logs a warning that the bottom of the page is cut off.
+The CV flows over A4 pages as needed, without splitting an entry across a page break. The build logs the page count and warns once the CV goes past two pages.
 
 ## Project structure
 
