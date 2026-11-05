@@ -1,6 +1,6 @@
 {
   "name": "ocv",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "bun run build && gh-pages -d dist"
+    "deploy": "bun run build && gh-pages -d dist --nojekyll"
   },
   "dependencies": {
     "@fontsource-variable/hanken-grotesk": "^5.3.0",

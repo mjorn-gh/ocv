@@ -30,6 +30,8 @@ The site runs at <http://localhost:4321>. In dev, `/cv` shows the CV page and `/
 | `bun run deploy`   | Build and publish `dist/` to the `gh-pages` branch  |
 | `bunx astro check` | Type-check the project                              |
 
+`deploy` publishes with `--nojekyll`. Without it, GitHub Pages runs Jekyll, which drops Astro's `_astro/` folder, so the site loses its CSS and images.
+
 ## Editing content
 
 All content lives in `src/data/`:
