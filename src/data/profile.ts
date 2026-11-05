@@ -3,7 +3,7 @@ export const profile = {
 	role: 'Software Engineer · UI/UX Designer',
 	location: 'Switzerland',
 	about:
-		'I design and build user-friendly web solutions. Software Engineer & UI/UX Designer at Bertschi Digital Logistics AG, where I also lead the UI Expert Group.',
+		'I work where design and engineering meet: I analyse how people want to use an application, then design and build a solution around it. I’m currently at Bertschi Digital Logistics AG, where I work as a designer and an engineer and lead the UI Expert Group.',
 	links: {
 		email: 'elias@mjoen.ch',
 		site: 'https://elias.mjoen.ch',
