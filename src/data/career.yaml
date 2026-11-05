@@ -8,10 +8,11 @@
     Hybrid role across design and engineering: UX concepts and solution design,
     full-stack development in the ordering team, and lead of the UI Expert Group.
   highlights:
-    - "Conceived and built a shared data table framework for 7 data-heavy browser applications: analysed how each displays and handles data, designed a common look and behaviour, and implemented the frontend framework (React). Its concepts became the basis for the backend implementation by another team."
+    - "Conceived and built a shared data table framework for 7 data-heavy browser applications: analysed how each displays and handles data, designed a common look and behaviour with Claude Design, and implemented the frontend framework (React)."
     - "Headed the redesign of the design system and React component library of the transport management system, from Figma to Storybook (React, Vite, Storybook, SASS, Figma)."
     - "Helped shape and build a new document management system with AI-based document categorisation: brought the user-centred perspective into its concept and architecture, designed how the categorisation results are presented to users, and took part in coding and code reviews (Java, React, MongoDB, AWS, OpenAPI)."
-  skills: [Java, React, UI/UX design, MongoDB, Design systems, Component libraries, Vite, Figma, Storybook, SASS, OpenAPI]
+    - "Member of the pilot team for AI-assisted development: helped define how we work with coding agents, from early prompting with ChatGPT and GitHub Copilot IDE Suggestions to rule- and skill-based workflows in Claude Code."
+  skills: [Java, React, AI-assisted development, UI/UX design, MongoDB, Claude Code, Design systems, Claude Design, Component libraries, Vite, Figma, Storybook, SASS, OpenAPI]
   languages: German, English
 
 
