@@ -9,7 +9,7 @@
     - Lead in Update of the Design System and component library of a Logistics Transport Management System (React, Vite, Storybook, SASS, Figma)
     - Part of the team working on the development of a new Document Management System featuring AI Categorization of documents (Java, React, MongoDB, AWS, AI)
     - Lead in Major Redesign & Restructuring of mission critical Application in a Logistics Transport Management System through the introduction of a datatable framework for both frontend and backend (Java, React, MongoDB)
-  skills: [UI/UX design, Design systems, Component libraries, Java, React, MongoDB, AWS, AI, SASS, Storybook]
+  skills: [UI/UX design, Design systems, Component libraries, Figma, Java, React, Vite, MongoDB, AWS, AI, SASS, Storybook]
   languages: German, English
 
 
@@ -45,4 +45,4 @@
   org: Old Cantonal School Aarau & BBBaden
   summary: IMS programme covering OOP (Java, C#), HTML/CSS/JS, SQL databases, software engineering and computer systems.
   skills: [Java, C#, HTML/CSS/JS, SQL, OOP]
-  languages: German, English (C1), French (B2), Norwegian (conversational)
+  languages: German (native), English (C1), French (B2), Norwegian (conversational)
