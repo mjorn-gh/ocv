@@ -12,6 +12,7 @@ import { chromium } from 'playwright';
 
 const CV_PATH = '/cv/';
 const PDF_PATH = '/cv.pdf';
+const MAX_PAGES = 2;
 
 async function renderPdf(url: string, logger: AstroIntegrationLogger) {
 	const browser = await chromium.launch();
@@ -19,13 +20,12 @@ async function renderPdf(url: string, logger: AstroIntegrationLogger) {
 		const page = await browser.newPage();
 		await page.goto(url, { waitUntil: 'networkidle' });
 		await page.evaluate(() => document.fonts.ready);
-		// The sheet is a fixed A4 page that clips anything past its edge.
-		const overflow = await page.evaluate(() => {
-			const sheet = document.querySelector<HTMLElement>('.sheet');
-			return sheet ? sheet.scrollHeight - sheet.clientHeight : 0;
-		});
-		if (overflow > 0) logger.warn(`CV content is ${overflow}px taller than the A4 page and gets cut off.`);
-		return await page.pdf({ preferCSSPageSize: true, printBackground: true });
+		const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
+		// Each page object in the PDF is "/Type /Page" (not "/Pages").
+		const pages = (Buffer.from(pdf).toString('latin1').match(/\/Type\s*\/Page\b(?!s)/g) ?? []).length;
+		if (pages > MAX_PAGES) logger.warn(`The CV is ${pages} pages long; aim for at most ${MAX_PAGES}.`);
+		else logger.info(`CV has ${pages} page${pages === 1 ? '' : 's'}.`);
+		return pdf;
 	} finally {
 		await browser.close();
 	}
