@@ -35,13 +35,13 @@ export const farPieces: Piece[] = [
 /** Large shaded pieces in front of the glow, behind the glass. */
 export const nearPieces: Piece[] = [
 	{ shape: 'kite', x: -250, y: 600, scale: 16 },
-	{ shape: 'cap', x: -399, y: 1413, scale: 46, rotate: -35 },
+	{ shape: 'cap', x: -399, y: 1513, scale: 46, rotate: -35 },
 	circle(520, 770, 90),
 	{ shape: 'cap', x: 520, y: 1000, scale: 20 },
 	{ shape: 'kite', x: 800, y: 820, scale: 9 },
 	{ shape: 'cap', x: 1310, y: 1040, scale: 26, rotate: 90 },
 	{ shape: 'kite', x: 520, y: 1560, scale: 14 },
-	circle(150, 2250, 120),
+	circle(150, 2600, 120),
 	circle(700, 2070, 170),
 	{ shape: 'kite', x: 960, y: 2420, scale: 12, rotate: 15 },
 ];
