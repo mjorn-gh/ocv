@@ -1,0 +1,48 @@
+# Newest first. Dates as MM/YYYY; omit `to` for the current position.
+- id: bertschi
+  kind: work
+  from: 07/2023
+  title: UI/UX Designer & Software Engineer
+  org: Bertschi Digital Logistics AG
+  summary: Design lead, head of the UI Expert Group, maintainer of the frontend component library, developer in the ordering team.
+  highlights:
+    - Lead in Update of the Design System and component library of a Logistics Transport Management System (React, Vite, Storybook, SASS, Figma)
+    - Part of the team working on the development of a new Document Management System featuring AI Categorization of documents (Java, React, MongoDB, AWS, AI)
+    - Lead in Major Redesign & Restructuring of mission critical Application in a Logistics Transport Management System through the introduction of a datatable framework for both frontend and backend (Java, React, MongoDB)
+  skills: [UI/UX design, Design systems, Component libraries, Figma, Java, React, Vite, MongoDB, AWS, AI, SASS, Storybook]
+  languages: German, English
+
+
+- id: fhnw
+  kind: education
+  from: 09/2019
+  to: 03/2023
+  title: BSc Computer Science, design & management
+  org: FHNW School of Engineering
+  summary: Specialisation in design & management. Projects for Allianz Suisse, cyber-security research and scheduling optimisation.
+  highlights:
+    - Lead management app for Allianz Suisse (React, Spring Boot)
+    - Cyber-security info site (React)
+    - General model for scheduling problems (C# .NET 6, Gurobi)
+  skills: [React, Spring Boot, C#, .NET, Gurobi]
+  languages: German, English
+
+- id: mammut
+  kind: work
+  from: 08/2017
+  to: 12/2018
+  title: Software Engineer (C# .NET WPF)
+  org: Mammut Soft Computing AG
+  summary: Intern, then full-time .NET developer building small desktop applications.
+  skills: [C#, .NET, WPF]
+  languages: German, English
+
+- id: ims
+  kind: education
+  from: 08/2014
+  to: 06/2018
+  title: EFZ Application Developer & BM (commerce)
+  org: Old Cantonal School Aarau & BBBaden
+  summary: IMS programme covering OOP (Java, C#), HTML/CSS/JS, SQL databases, software engineering and computer systems.
+  skills: [Java, C#, HTML/CSS/JS, SQL, OOP]
+  languages: German (native), English (C1), French (B2), Norwegian (conversational)

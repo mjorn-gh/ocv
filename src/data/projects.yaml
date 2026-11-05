@@ -1,0 +1,36 @@
+- id: scheduling
+  order: 1
+  title: Scheduling problems
+  label: Bachelor thesis
+  summary: Universal model for scheduling problems, with a website connected to a solver that lets users formulate their own problems. Team of 2.
+  tags: [C#, .NET 6, Blazor, Gurobi]
+  image: ../assets/projects/bachelor.jpg
+  code: https://github.com/mjorn-gh/bachelors-thesis
+
+- id: covid-internet
+  order: 2
+  title: Covid-19 internet
+  label: Data visualisation
+  summary: How people in Switzerland used the internet during the Covid-19 pandemic, based on a national survey by the Federal Statistical Office. Team of 2.
+  tags: [D3.js, HTML/CSS/JS]
+  image: ../assets/projects/ivis.jpg
+  code: https://github.com/mjorn-gh/internet-usage
+  site: https://mjorn-gh.github.io/internet-usage/
+
+- id: ethical-nudging
+  order: 3
+  title: Ethical nudging
+  label: Thesis precursor
+  summary: Demonstrates the effectiveness of ethical nudging in cyber-security advisories. Team of 2.
+  tags: [React, HTML/CSS/JS]
+  image: ../assets/projects/geiger.jpg
+  code: https://github.com/mjorn-gh/geiger-nudging
+  site: https://mjorn-gh.github.io/geiger-nudging/
+
+- id: lead-management
+  order: 4
+  title: Lead management
+  label: Project for Allianz Suisse
+  summary: Lead management application for Allianz Suisse, built as an introduction to agile development. Team of 7.
+  tags: [React, Java, Spring Boot]
+  image: ../assets/projects/leadtool.jpg

@@ -1,0 +1,69 @@
+---
+// The logo, slowly pulling apart and snapping back together. Each piece is a
+// separate layer so the motion stays on the compositor.
+import { logoShapes } from './logo';
+
+// Grid units of padding so the exploded pieces stay inside the box.
+const pad = 2.4;
+const viewBox = `${-pad} ${-pad} ${24 + pad * 2} ${24 + pad * 2}`;
+// How far the pieces travel, as a share of the box per grid unit.
+const step = (1.6 / (24 + pad * 2)) * 100;
+---
+
+<div class="mark" aria-hidden="true">
+	{
+		logoShapes.map(({ d, dx, dy }, i) => (
+			<svg viewBox={viewBox} style={`--dx:${dx * step}%;--dy:${dy * step}%`}>
+				<defs>
+					<linearGradient id={`mark-${i}`} x1="0" y1="0" x2="1" y2="1">
+						<stop offset="0" style="stop-color: var(--s1)" />
+						<stop offset="0.55" style="stop-color: var(--s2)" />
+						<stop offset="1" style="stop-color: var(--s3)" />
+					</linearGradient>
+				</defs>
+				<path d={d} fill={`url(#mark-${i})`} />
+			</svg>
+		))
+	}
+</div>
+
+<style>
+	.mark {
+		position: absolute;
+		top: 40px;
+		right: -6%;
+		width: clamp(240px, 50%, 600px);
+		aspect-ratio: 1;
+		pointer-events: none;
+	}
+
+	svg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		filter: drop-shadow(0 18px 30px var(--drop));
+		will-change: transform;
+		animation: breathe 30s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+	}
+
+	@keyframes breathe {
+		0%,
+		85%,
+		100% {
+			translate: 0 0;
+		}
+		30%,
+		60% {
+			translate: var(--dx) var(--dy);
+		}
+	}
+
+	@media (max-width: 720px) {
+		.mark {
+			top: 0;
+			right: -18%;
+			opacity: 0.55;
+		}
+	}
+</style>

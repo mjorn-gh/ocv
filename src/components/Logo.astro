@@ -1,0 +1,25 @@
+---
+import { logoShapes } from './logo';
+
+interface Props {
+	class?: string;
+	/** Push the shapes apart by this many grid units. */
+	explode?: number;
+}
+
+const { class: className, explode = 0 } = Astro.props;
+const pad = explode * 1.4;
+---
+
+<svg
+	class={className}
+	viewBox={`${-pad} ${-pad} ${24 + pad * 2} ${24 + pad * 2}`}
+	fill="currentColor"
+	aria-hidden="true"
+>
+	{
+		logoShapes.map(({ d, dx, dy }) => (
+			<path d={d} transform={explode ? `translate(${dx * explode} ${dy * explode})` : undefined} />
+		))
+	}
+</svg>

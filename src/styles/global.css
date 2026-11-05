@@ -1,0 +1,146 @@
+/* Theme tokens. Dark is the default; light follows the system unless the
+   visitor picked a theme with the toggle (stored as html[data-theme]). */
+:root {
+	color-scheme: dark;
+	--bg: #171c26;
+	--text: #e8d6c2;
+	--strong: #f3e8db;
+	--muted: rgb(232 214 194 / 0.72);
+	--glass-ink: #f3e8db;
+	--faint: rgb(232 214 194 / 0.16);
+	--rule: rgb(232 214 194 / 0.32);
+	--glass: rgb(232 214 194 / 0.07);
+	--glass-border: rgb(232 214 194 / 0.16);
+	--glass-hi: rgb(255 255 255 / 0.08);
+	--shadow: rgb(4 6 10 / 0.45);
+	--s1: #6b7592;
+	--s2: #3f485f;
+	--s3: #232937;
+	--drop: rgb(4 6 10 / 0.6);
+	--glow: rgb(232 214 194 / 0.18);
+	--far-opacity: 0.45;
+	--accent: #e8d6c2;
+	--on-accent: #171c26;
+
+	--sans: 'Hanken Grotesk Variable', system-ui, sans-serif;
+	--mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme='dark']) {
+		color-scheme: light;
+		--bg: #ede2d4;
+		--text: #232838;
+		--strong: #1b2030;
+		--muted: #4d556b;
+		--glass-ink: #000;
+		--faint: rgb(35 40 56 / 0.14);
+		--rule: rgb(35 40 56 / 0.35);
+		--glass: rgb(251 247 241 / 0.48);
+		--glass-border: rgb(255 255 255 / 0.75);
+		--glass-hi: rgb(255 255 255 / 0.85);
+		--shadow: rgb(63 72 95 / 0.16);
+		--s1: #5d6782;
+		--s2: #3f485f;
+		--s3: #2b3244;
+		--drop: rgb(63 72 95 / 0.3);
+		--glow: #fbf6ef;
+		--far-opacity: 0.16;
+		--accent: #3f485f;
+		--on-accent: #ede2d4;
+	}
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+	--bg: #ede2d4;
+	--text: #232838;
+	--strong: #1b2030;
+	--muted: #4d556b;
+	--glass-ink: #000;
+	--faint: rgb(35 40 56 / 0.14);
+	--rule: rgb(35 40 56 / 0.35);
+	--glass: rgb(251 247 241 / 0.48);
+	--glass-border: rgb(255 255 255 / 0.75);
+	--glass-hi: rgb(255 255 255 / 0.85);
+	--shadow: rgb(63 72 95 / 0.16);
+	--s1: #5d6782;
+	--s2: #3f485f;
+	--s3: #2b3244;
+	--drop: rgb(63 72 95 / 0.3);
+	--glow: #fbf6ef;
+	--far-opacity: 0.16;
+	--accent: #3f485f;
+	--on-accent: #ede2d4;
+}
+
+html {
+	background: var(--bg);
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font: 300 17px/1.55 var(--sans);
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+.glass {
+	/* Small secondary text needs full contrast on frosted glass. */
+	--muted: var(--glass-ink);
+	border-radius: 24px;
+	background: var(--glass);
+	/* Unprefixed last: the minifier keeps only the final declaration. */
+	-webkit-backdrop-filter: blur(28px) saturate(150%);
+	backdrop-filter: blur(28px) saturate(150%);
+	border: 1px solid var(--glass-border);
+	box-shadow:
+		inset 0 1px 0 var(--glass-hi),
+		0 30px 60px var(--shadow);
+}
+
+.mono {
+	font-family: var(--mono);
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.eyebrow {
+	font-family: var(--mono);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+	}
+}

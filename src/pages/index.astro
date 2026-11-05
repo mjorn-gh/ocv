@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Background from '../components/Background.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Career from '../components/Career.astro';
+import Projects from '../components/Projects.astro';
+import { profile } from '../data/profile';
+---
+
+<Base title={profile.name}>
+	<div class="page" id="top">
+		<Background />
+		<div class="wrap">
+			<Header />
+			<main>
+				<Hero />
+				<Career />
+				<Projects />
+			</main>
+			<footer class="footer mono">
+				<span>© {new Date().getFullYear()} {profile.name}</span>
+				<span>elias.mjoen.ch</span>
+			</footer>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.page {
+		position: relative;
+		min-height: 100vh;
+		overflow: hidden;
+	}
+
+	.wrap {
+		position: relative;
+		max-width: 1480px;
+		margin: 0 auto;
+		padding: 0 clamp(24px, 4vw, 64px) 64px;
+	}
+
+	.footer {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 16px;
+		margin-top: 120px;
+		padding-top: 18px;
+		border-top: 2px solid var(--text);
+	}
+
+	@media (max-width: 720px) {
+		.wrap {
+			padding: 0 16px 48px;
+		}
+		.footer {
+			margin-top: 80px;
+		}
+	}
+</style>
