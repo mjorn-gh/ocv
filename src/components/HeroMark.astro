@@ -59,11 +59,15 @@ const step = (1.6 / (24 + pad * 2)) * 100;
 		}
 	}
 
+	/* Phones: the logo centred above the name (the hero reserves
+	   --mark-size of space for it), so the text never sits on the shapes. */
 	@media (max-width: 720px) {
 		.mark {
-			top: 0;
-			right: -18%;
-			opacity: 0.55;
+			top: var(--mark-space);
+			left: 0;
+			right: 0;
+			width: var(--mark-size);
+			margin-inline: auto;
 		}
 	}
 </style>

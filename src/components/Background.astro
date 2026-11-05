@@ -105,14 +105,11 @@ const style = (p: Piece) =>
 		filter: drop-shadow(0 14px 22px var(--drop));
 	}
 
-	/* On narrow screens the stage is cropped to its centre; thin out the
-	   pieces so they don't crowd the content. */
+	/* On narrow screens the stage is cropped to its centre; drop the small
+	   far pieces so they don't crowd the content. */
 	@media (max-width: 720px) {
 		.far {
 			display: none;
-		}
-		.near {
-			opacity: 0.6;
 		}
 	}
 </style>

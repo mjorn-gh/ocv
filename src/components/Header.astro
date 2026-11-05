@@ -13,6 +13,8 @@ import { profile } from '../data/profile';
 		<a href="#career">Career</a>
 		<a href="#projects">Projects</a>
 		<a href={`mailto:${profile.links.email}`}>Contact</a>
+	</nav>
+	<div class="actions">
 		<button type="button" class="theme" data-theme-toggle aria-label="Switch colour theme">
 			<svg viewBox="0 0 24 24" aria-hidden="true">
 				<circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
@@ -20,7 +22,7 @@ import { profile } from '../data/profile';
 			</svg>
 		</button>
 		<a href="/cv.pdf" download="CV_Elias_Mjoen.pdf" class="cv">CV.pdf ↓</a>
-	</nav>
+	</div>
 </header>
 
 <script>
@@ -42,8 +44,7 @@ import { profile } from '../data/profile';
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
+		gap: 16px 28px;
 		padding: 28px 0 18px;
 		border-bottom: 2px solid var(--text);
 	}
@@ -64,16 +65,20 @@ import { profile } from '../data/profile';
 		font-size: 18px;
 	}
 
-	nav {
+	.brand {
+		margin-right: auto;
+	}
+
+	nav,
+	.actions {
 		display: flex;
-		flex-wrap: wrap;
 		align-items: center;
-		gap: 8px 28px;
+		gap: 28px;
 		font-size: 15px;
 		font-weight: 500;
 	}
 
-	nav a:not(.cv):hover {
+	nav a:hover {
 		color: var(--strong);
 		text-decoration: underline;
 		text-underline-offset: 4px;
@@ -109,9 +114,28 @@ import { profile } from '../data/profile';
 		font-weight: 600;
 	}
 
+	/* Phones: just name, theme toggle and CV. The page is a short one-pager
+	   and the contact links sit right in the hero, so the nav links go. */
 	@media (max-width: 560px) {
-		.mono {
+		.mono,
+		nav {
 			display: none;
+		}
+		.actions {
+			gap: 16px;
+		}
+	}
+
+	/* Smallest phones: tighten the first row so the CV button stays on it. */
+	@media (max-width: 359px) {
+		.header {
+			column-gap: 12px;
+		}
+		.actions {
+			gap: 4px;
+		}
+		.cv {
+			padding: 0 12px;
 		}
 	}
 </style>

@@ -54,13 +54,23 @@ import { profile } from '../data/profile';
 		color: var(--strong);
 	}
 
-	/* One line once there is room beside the hero logo. */
-	@media (min-width: 1200px) {
+	/* One line where the hero logo leaves room: on phones, where the logo
+	   is centred above the name, and on wide screens beside it. In between
+	   the name would run into the logo, so it keeps two lines. */
+	@media (max-width: 720px), (min-width: 1200px) {
 		.title {
 			max-width: none;
 		}
 		.break {
 			display: none;
+		}
+	}
+
+	/* Shrink on very narrow phones so the single line always fits; the name
+	   is about 4.7× as wide as its font size. */
+	@media (max-width: 720px) {
+		h1 {
+			font-size: min(clamp(64px, 14vw, 136px), calc((100vw - 32px) / 4.7));
 		}
 	}
 
@@ -124,9 +134,17 @@ import { profile } from '../data/profile';
 
 	@media (max-width: 720px) {
 		.hero {
+			--mark-size: min(280px, 72vw);
+			/* Breathing room above and below the logo. */
+			--mark-space: 40px;
 			min-height: 0;
-			padding-top: 120px;
+			padding-top: calc(var(--mark-size) * 0.96 + var(--mark-space) * 2);
 			gap: 32px;
+		}
+		.title {
+			align-items: center;
+			text-align: center;
+			gap: 14px;
 		}
 		.cell {
 			padding: 22px 24px;
